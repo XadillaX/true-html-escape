@@ -23,7 +23,10 @@ exports.unescape = function(html) {
     var temp = escapist.unescape(html);
 
     // with `&#0000`
-    var andSharp = /&#\d+;/g;
+    // need add hex    by mcdong
+    //  一共含有两种格式 五位数字 或者是 x 加四位十六进制数
+
+    var andSharp = /&#([x|X]{1}[\d|a-f|A-F]{4}|\d{5});/g;
     var result = temp.match(andSharp);
 
     // no match
