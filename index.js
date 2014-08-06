@@ -22,11 +22,9 @@ exports.escape = function(html) {
 exports.unescape = function(html) {
     var temp = escapist.unescape(html);
 
-    // with `&#0000`
-    // need add hex    by mcdong
-    //  一共含有两种格式 五位数字 或者是 x 加四位十六进制数
-
-    var andSharp = /&#([x|X]{1}[\d|a-f|A-F]{4}|\d{5});/g;
+    // with `&#0000;` or `&#xABCD;`
+    // (thanks to mcdong)
+    var andSharp = /&#([x|X]{1}[\d|a-f|A-F]+?|\d+?);/g;
     var result = temp.match(andSharp);
 
     // no match
@@ -37,7 +35,7 @@ exports.unescape = function(html) {
     // reduce
     temp = result.unique().reduce(function(html, code) {
         var buffer = new CharBuffer();
-        var charCode = parseInt(code.substr(2));
+        var charCode = (code[2].toUpperCase() === 'X') ? parseInt(code.substr(3, code.length - 4), 16) : parseInt(code.substr(2));
         buffer.append(charCode);
 
         var regex = new RegExp(code, "g");

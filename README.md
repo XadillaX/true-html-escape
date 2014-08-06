@@ -31,6 +31,7 @@ var escaper = require("true-html-escape");
 escaper.escape("¤¥€");                                                  ///<= &curren;&yen;&euro;
 escaper.unescape("&lt;span&gt;&#29579;&#23612;&#29595;&lt;/span&gt;");  ///<= <span>王尼玛</span>
 escaper.unescape("&#12501;&#12521;&#12531;&#12489;&#12540;&#12523;");   ///<= フランドール
+escaper.unescape("(&#x256d;&#xffe3;3&#xffe3;)&#x256d;&#x2661;")         ///<= (╭￣3￣)╭♡
 ```
 
 > 所以说这货为了反转义一些非常恶心的 Unicode 转义编码，而 [npm](https://www.npmjs.org/search?q=escape%20html) 貌似找不到。
