@@ -35,7 +35,11 @@ exports.unescape = function(html) {
     // reduce
     temp = result.unique().reduce(function(html, code) {
         var buffer = new CharBuffer();
-        var charCode = (code[2].toUpperCase() === 'X') ? parseInt(code.substr(3, code.length - 4), 16) : parseInt(code.substr(2));
+
+        var charCode = (code[2].toUpperCase() === 'X') ?
+            parseInt(code.substr(3, code.length - 4), 16) :
+            parseInt(code.substr(2));
+
         buffer.append(charCode);
 
         var regex = new RegExp(code, "g");
