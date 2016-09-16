@@ -20,7 +20,7 @@
     "ascii"
   ],
   "author": "XadillaX",
-  "license": "GPLv2",
+  "license": "MIT",
   "directories": {
     "test": "test"
   },
