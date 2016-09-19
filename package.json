@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "char-buffer": "^1.0.1",
+    "lodash.uniq": "^4.5.0",
     "node-escapist": "^0.1.1-f"
   },
   "devDependencies": {},
