@@ -1,9 +1,13 @@
 /**
  * Created by XadillaX on 2014/8/5.
  */
-require("sugar");
+var _ = {
+    uniq: require("lodash.uniq")
+};
 var escapist = require("node-escapist");
 var CharBuffer = require("char-buffer");
+
+var AND_SHARP = /&#([x|X]{1}[\d|a-f|A-F]+?|\d+?);/g;
 
 /**
  * escape html
@@ -24,8 +28,7 @@ exports.unescape = function(html) {
 
     // with `&#0000;` or `&#xABCD;`
     // (thanks to mcdong)
-    var andSharp = /&#([x|X]{1}[\d|a-f|A-F]+?|\d+?);/g;
-    var result = temp.match(andSharp);
+    var result = temp.match(AND_SHARP);
 
     // no match
     if(!Array.isArray(result)) {
@@ -33,7 +36,7 @@ exports.unescape = function(html) {
     }
 
     // reduce
-    temp = result.unique().reduce(function(html, code) {
+    temp = _.uniq(result).reduce(function(html, code) {
         var buffer = new CharBuffer();
 
         var charCode = (code[2].toUpperCase() === 'X') ?
