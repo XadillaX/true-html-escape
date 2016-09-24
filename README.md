@@ -41,6 +41,6 @@ Contribute
 
 You're welcome to improve this module.
 
-Please contact me or just push request.
+Please contact me or just make pull request.
 
 Thanks.
